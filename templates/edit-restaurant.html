@@ -1,0 +1,32 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+    餐廳編輯表格
+{% endblock title %}
+
+{% block main_content %}
+    <section class="container">
+        <div class="row justify-content-around text-white text-center mt-5">
+            <div class="col-sm-8">
+                <h3>修改資料</h3>
+            </div>
+        </div>
+
+        <div class="row justify-content-around text-white text-center mt-2">
+            <div class="row col-sm-5">
+                <form action="" method="POST" class="bg-secondary p-3 rounded shadow-lg">
+                    {% csrf_token %}<!--只要是輸入框都要-->
+                    {{form.as_p}}
+
+                    <input type="submit" value="修改" class="btn btn-outline-light">
+                </form>
+            </div>
+            
+
+        </div>
+
+    </section>
+{% endblock main_content %}
+
+
+

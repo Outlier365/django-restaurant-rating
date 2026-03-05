@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!--導入css-->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>{% block title %}{% endblock title %}| CRUD</title>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+  <style>
+        body {
+            background-color: #a9aeb2; /* 這裡可以換成您喜歡的顏色，例如淺灰 #f8f9fa */
+        }
+  </style>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'Home'%}">Jerry's Project</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Home' %}">首頁</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'add-restaurant' %}">新增</a>
+  </li>
+</ul>
+
+<ul class="navbar-nav ms-auto">
+  {% if user.is_authenticated %}
+  <li class="nav-item">
+  <span class="navbar-brand mb-0">Hi {{ user.username }}</span>
+</li>
+<li class="nav-item">
+    <form method="post" action="{% url 'logout' %}" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="nav-link btn btn-link p-0">
+            登出
+        </button>
+    </form>
+</li>
+  {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">登入</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'signup' %}">創建帳號</a>
+    </li>
+  {% endif %}
+</ul>
+      </div>
+    </div>
+  </nav>
+  <!--nav end-->
+    {% block main_content %}{% endblock main_content %}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.3.0/mdb.umd.min.js"
+    ></script>
+    {% block myscripts %}{% endblock myscripts %}
+  </body>
+</html>

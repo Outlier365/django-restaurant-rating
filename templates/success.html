@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+寄送成功
+{% endblock title %}
+
+{% block extra_head %}
+<meta http-equiv="refresh" content="5; url={% url 'Home' %}" />
+{% endblock extra_head %}
+
+{% block main_content %}
+<div class="text-center mt-5">
+    <h2>信件已送出</h2>
+    <p class="fs-4">五秒後跳回首頁</p>
+</div>
+{% endblock main_content %}

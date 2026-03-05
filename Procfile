@@ -1,0 +1,1 @@
+web: gunicorn myproject_restaurant_rating.wsgi
